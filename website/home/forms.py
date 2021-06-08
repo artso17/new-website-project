@@ -19,3 +19,9 @@ class GalleryForm(forms.ModelForm):
         field_classes = {
             'Image': SvgAndImageFormField,
         }
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
