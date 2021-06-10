@@ -9,6 +9,146 @@
 
 {% block content %}
     
+
+<div class="container-fluid d-grid gap-3">
+
+
+<!-- home -->
+<section class="home-section bg-primary px-2 " id="home">
+    <div class="row align-items-center vh-100">
+        <div class="col text-light">
+            <center>
+                <h2>Hello I'm Aditya</h2>
+                <h2>A Web Developer</h2>
+            </center>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<!-- about -->
+<section class="about-section p-section px-2" id="about">
+    <div class="row">
+        <div class="col container-about">
+            <div class="img-box bg-dark">
+                <p>image box</p>
+            </div>
+            <div class="about-box d-grid gap-2">
+                <div class="title">
+                    <h3>About Me</h3>
+                    <h2>A UI/UX Designer & Full Stack Web Developer Based in Indonesia</h2>
+                </div>
+                <p>An area that is in the middle of various cultures and becomes a place where technology ships docked.</p>
+                <div id="about-group-list">
+                    <ul class="group-list">
+                        <li class="group-list-item">Name</li>
+                        <li class="group-list-item">: <span class="text-muted ">{{about.Name}}</span></li>
+                        <li class="group-list-item">Date of Birth</li>
+                        <li class="group-list-item">: <span class="text-muted ">{{about.Date_of_Birth}}</span></li>
+                        <li class="group-list-item">Address</li>
+                        <li class="group-list-item">: <span class="text-muted ">{{about.Address}}</span></li>
+                    </ul>
+                    <ul class="group-list">
+                        <li class="group-list-item">Email</li>
+                        <li class="group-list-item">: <span class="text-muted ">{{about.Email}}</span></li>
+                        <li class="group-list-item">Phone</li>
+                        <li class="group-list-item">: <span class="text-muted ">{{about.Phone}}</span></li>
+                    </ul>
+                </div>
+                <a class="btn btn-outline-success rounded-pill" href="#" role="button">Download CV</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- skill -->
+<section class="skill-section p-section px-2" id="skill">
+    <div class="row">
+        <div class="col">
+            <div class="title">
+                <center>
+                <h3>Skills</h3>
+                <h2>My Skills</h2>
+                </center>
+            </div>
+            <div class="skill-container">
+                <div class="skill-box">
+                    <div class="skill-val">
+                        <p>HTML</p>
+                        <P class="text-end">25%</P>
+                    </div>
+                    <div class="progress rounded-pill">
+                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-val">
+                        <p>HTML</p>
+                        <P class="text-end">25%</P>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-val">
+                        <p>HTML</p>
+                        <P class="text-end">25%</P>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-val">
+                        <p>HTML</p>
+                        <P class="text-end">25%</P>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- service -->
+<section class="service-section p-section px-2" id="service"><div class="row">
+    <div class="col">
+        <div class="title">
+            <center>
+                <h3>Service</h3>
+                <h2>What Will I Do?</h2>
+            </center>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+</div>
+
+
 {% endblock content %}
     
 
