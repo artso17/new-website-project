@@ -16,7 +16,7 @@
 <!-- home -->
 <section class="home-section bg-primary px-2 " id="home">
     <div class="row align-items-center vh-100">
-        <div class="col text-light">
+        <div class="col ">
             <center>
                 <h2>Hello I'm Aditya</h2>
                 <h2>A Web Developer</h2>
@@ -73,50 +73,30 @@
 <!-- skill -->
 <section class="skill-section p-section px-2" id="skill">
     <div class="row">
-        <div class="col">
+        <div class="col d-grid gap-4">
             <div class="title">
                 <center>
                 <h3>Skills</h3>
                 <h2>My Skills</h2>
                 </center>
             </div>
-            <div class="skill-container">
-                <div class="skill-box">
-                    <div class="skill-val">
-                        <p>HTML</p>
-                        <P class="text-end">25%</P>
-                    </div>
-                    <div class="progress rounded-pill">
-                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <div class="skill-val">
-                        <p>HTML</p>
-                        <P class="text-end">25%</P>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <div class="skill-val">
-                        <p>HTML</p>
-                        <P class="text-end">25%</P>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <div class="skill-val">
-                        <p>HTML</p>
-                        <P class="text-end">25%</P>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
+            <div class="skill-container container-grid">
+                {% for skill in skills %}
+                    
+                    {% if skill.Publish %}
+                        <div class="skill-box">
+                            <div class="skill-val">
+                                <p>{{skill.Name}}</p>
+                                <P class="text-end">{{skill.Skill_Range}}%</P>
+                            </div>
+                            <div class="progress rounded-pill">
+                                <div class="progress-bar" role="progressbar" style="width: {{skill.Skill_Range}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        
+                    {% endif %}
+                        
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -127,19 +107,85 @@
 
 
 <!-- service -->
-<section class="service-section p-section px-2" id="service"><div class="row">
-    <div class="col">
-        <div class="title">
-            <center>
-                <h3>Service</h3>
-                <h2>What Will I Do?</h2>
-            </center>
+<section class="service-section p-section px-2" id="service">
+    <div class="row ">
+        <div class="col d-grid gap-4">
+            <div class="title">
+                <center>
+                    <h3>Service</h3>
+                    <h2>What Will I Do?</h2>
+                </center>
+            </div>
+            <div class="service-container container-grid">
+                {% for service in services %}
+                    
+                    {% if service.Publish %}
+                        <div class="service-box text-center d-grid gap-2">
+                            <center>
+                                <img src="{{service.Image.url}}" alt="{{service.Name}}">
+                            </center>
+                            <h3>{{service.Name}}</h3>
+                            <p>{{service.Body|truncatewords:'50'}}</p>
+                        </div>
+                        
+                    {% endif %}
+                        
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 
+
+
+<!-- Gallery -->
+<section class="gallery-section p-section px-2" id="gallery">
+    <div class="row ">
+        <div class="col d-grid gap-4">
+            <div class="title">
+                <center>
+                    <h3>Gallery</h3>
+                    <h2>See My Works</h2>
+                </center>
+            </div>
+            <div class="gallery-container container-grid">
+                {% for gallery in galleries %}
+                    {% if gallery.Publish %}
+                        <div class="gallery-box" style="background-image:url({{gallery.Image.url}})">
+                            <p class="d-none">cek</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+                <a href="#" class="btn btn-outline-primary rounded-pill">Show More</a>
+        </div>
+    </div>
+</section>
+
+    
+    
+
+
+<!-- contact css -->
+<section class="contact-section p-section px-2" id="contact">
+    <div class="row ">
+        <div class="col d-grid gap-4">
+            <div class="title">
+                <center>
+                    <h3>Contact</h3>
+                    <h2>Get in Touch</h2>
+                </center>
+            </div>
+            <div class="contact-container">
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    {{contact.as_p}}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 

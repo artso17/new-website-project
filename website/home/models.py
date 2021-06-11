@@ -18,6 +18,7 @@ class About(models.Model):
 class Skill(models.Model):
     Name = models.CharField(max_length=100)
     Skill_Range = models.PositiveSmallIntegerField()
+    Publish = models.BooleanField(default=False)
     slug = models.SlugField(editable=False, blank=True, null=True)
 
     def __str__(self):
@@ -35,6 +36,7 @@ class Service(models.Model):
     Height = models.IntegerField(default=0, null=True, blank=True)
     Width = models.IntegerField(default=0, null=True, blank=True)
     Body = models.TextField()
+    Publish = models.BooleanField(default=False)
     slug = models.SlugField(editable=False, blank=True, null=True)
 
     def __str__(self):
@@ -52,7 +54,7 @@ class Gallery(models.Model):
     Height = models.IntegerField(default=0, null=True, blank=True)
     Width = models.IntegerField(default=0, null=True, blank=True)
     slug = models.SlugField(blank=True, null=True, editable=False)
-    Is_Published = models.BooleanField(default=False)
+    Publish = models.BooleanField(default=False)
 
     def __str__(self):
         return '{}.{}'.format(self.id, self.Name)
