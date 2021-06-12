@@ -21,18 +21,22 @@ p {
     font-weight: 500;
 }
 
-
+li {
+    list-style: none;
+}
 
 
 .active {
-    position: relative;
+    border-bottom: 3px solid var(--blue-color);
+    transition: all 0.8s ease;
+}
+
+.nav-link {
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    /* background-color: var(--blue-color); */
 
-    border-bottom: 5px solid var(--blue-color);
 }
 
 .nav-link h3 {
@@ -41,18 +45,9 @@ p {
 
 .active h3 {
     font-weight: 500;
+    /* transition: all 0.5s ease; */
 }
 
-/* a.active::before {
-    content: ' ';
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(252, 0, 252, 0.267);
-    position: absolute;
-    border-bottom: 5px solid #555;
-} */
 
 .home-section h2 {
     color: #fff;
@@ -143,6 +138,55 @@ p {
 }
 
 
+
+
+/* contact css */
+form {
+    display: grid;
+    grid-template-areas: 'pertama kedua'
+        'satu satu'
+        'dua dua'
+        'tiga tiga';
+
+    gap: 15px;
+}
+
+#name-form {
+    grid-area: pertama;
+}
+
+#email-form {
+    grid-area: kedua;
+}
+
+#subject-form {
+    grid-area: satu;
+}
+
+#message-form {
+    grid-area: dua;
+    height: 40vh;
+    border-radius: 20px;
+}
+
+#submit-form {
+    grid-area: tiga;
+}
+
+.form-control {
+    background-color: var(--light-blue);
+}
+
+
+
+
+
+/* footer css */
+.footer-box>* {
+    color: #fff;
+}
+
+
 @media (max-width: 768px) {
     .container-about {
         grid-template-columns: 1fr;
@@ -155,5 +199,14 @@ p {
 
     .container-grid {
         grid-template-columns: 1fr;
+    }
+
+    form {
+        grid-template-areas:
+            'pertama pertama'
+            'kedua kedua'
+            'satu satu'
+            'dua dua'
+            'tiga tiga';
     }
 }

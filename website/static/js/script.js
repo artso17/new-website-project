@@ -2,10 +2,9 @@ const activeMenu=()=>{
     const elem=document.querySelector('.active')
     const navLink=document.querySelectorAll('.nav-link')
     let scrollPos=window.scrollY
-    const myUrl=new URL(window.location.href)
-    console.log(scrollPos)
 
-    if(window.innerWidth>992 && scrollPos <603){
+
+    if(window.innerWidth>992 && scrollPos <400){
         navLink[0].classList.add('active')
         navLink[1].classList.remove('active')
     }else if(window.innerWidth>992 && scrollPos <1438){
@@ -20,8 +19,10 @@ const activeMenu=()=>{
         navLink[2].classList.remove('active')
         navLink[3].classList.add('active')
         navLink[4].classList.remove('active')
+    }else if(window.innerWidth>992 && scrollPos <4000){
+        navLink[3].classList.remove('active')
+        navLink[4].classList.add('active')
+        
     }
 }
 window.addEventListener('scroll',activeMenu)
-const myUrl=new URL(window.location.href)
-console.log(myUrl.hash)
