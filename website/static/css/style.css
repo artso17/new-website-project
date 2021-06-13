@@ -25,27 +25,17 @@ li {
     list-style: none;
 }
 
+.navbar-brand img {
+    width: 3vw;
+}
 
 .active {
     border-bottom: 3px solid var(--blue-color);
-    transition: all 0.8s ease;
 }
 
-.nav-link {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-}
 
 .nav-link h3 {
     font-weight: 400;
-}
-
-.active h3 {
-    font-weight: 500;
-    /* transition: all 0.5s ease; */
 }
 
 
@@ -66,6 +56,10 @@ li {
 .img-box {
     width: 350px;
     height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
 }
 
 #about-group-list {
@@ -105,7 +99,7 @@ li {
 }
 
 .progress {
-    background-color: var(--light-blue)
+    background-color: var(--light-blue);
 }
 
 .progress-bar {
@@ -137,6 +131,35 @@ li {
     background-position: center;
 }
 
+
+
+.gallery-hover {
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(4, 118, 208, .8);
+    opacity: 0;
+    transform: scale(0);
+
+}
+
+a.detail-gallery:hover .gallery-hover {
+    opacity: 1;
+    transition: all .3s ease .2s;
+}
+
+a.detail-gallery:hover .gallery-box,
+.gallery-hover {
+
+    transform: scale(1.1);
+    transition: transform .3s ease;
+}
+
+.description {
+    color: var(--light-blue);
+}
 
 
 

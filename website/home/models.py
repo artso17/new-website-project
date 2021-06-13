@@ -10,6 +10,7 @@ class About(models.Model):
     Address = models.CharField(max_length=200)
     Email = models.EmailField()
     Phone = models.CharField(max_length=20)
+    Image = models.ImageField(upload_to='image/about', blank=True, null=True)
 
     def __str__(self):
         return '{}.{}'.format(self.id, self.Name)
@@ -49,6 +50,8 @@ class Service(models.Model):
 
 class Gallery(models.Model):
     Name = models.CharField(max_length=100)
+    Skill = models.ManyToManyField(
+        Skill,  blank=True, null=True)
     Image = models.ImageField(
         upload_to='image/gallery', height_field='Height', width_field='Width')
     Height = models.IntegerField(default=0, null=True, blank=True)
