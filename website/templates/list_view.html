@@ -1,0 +1,55 @@
+{% extends 'admin_base.html' %}
+
+
+{% block title %}
+    {{title}} | Admin Site
+{% endblock title %}
+    
+
+{% block content %}
+<main>
+    <div class="container py-3">
+        <center>
+            <header>
+                <h2>{{title}}</h2>
+            </header>
+            <main>
+                <section class="about-section">
+                    <h3>About List</h3>
+                    <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">N0</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            {% for about in abouts %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{about.Name}}</td>
+                                    <td>{{about.id}}</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="#" role="button">Delete</a> | <a class="btn btn-warning" href="#" role="button">Update</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'createAbout' %}" class="btn btn-primary" type="button">Add New</a>
+                    </div>
+                </section>
+            </main>
+            
+        </center>
+
+    </div>
+
+</main>
+
+{% endblock content %}
+    

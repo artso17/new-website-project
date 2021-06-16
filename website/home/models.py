@@ -51,7 +51,7 @@ class Service(models.Model):
 class Gallery(models.Model):
     Name = models.CharField(max_length=100)
     Skill = models.ManyToManyField(
-        Skill,  blank=True, null=True)
+        Skill,  blank=True)
     Image = models.ImageField(
         upload_to='image/gallery', height_field='Height', width_field='Width')
     Height = models.IntegerField(default=0, null=True, blank=True)

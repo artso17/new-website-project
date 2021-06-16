@@ -1,0 +1,26 @@
+{% extends 'admin_base.html' %}
+
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+<main>
+    <div class="container py-3">
+        <center>
+            <header>
+                <h2>{{title}}</h2>
+            </header>
+        </center>
+        <main>
+            <form action="{% url 'list' %}" method="post">
+                {% csrf_token %}
+                {{about.as_p}}
+            </form>
+        </main>
+    </div>
+</main>
+{% endblock content %}
+    
