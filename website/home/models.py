@@ -10,7 +10,7 @@ class About(models.Model):
     Address = models.CharField(max_length=200)
     Email = models.EmailField()
     Phone = models.CharField(max_length=20)
-    Image = models.ImageField(upload_to='image/about', blank=True, null=True)
+    Image = models.ImageField(upload_to='image/about')
 
     def __str__(self):
         return '{}.{}'.format(self.id, self.Name)

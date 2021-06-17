@@ -1,0 +1,31 @@
+{% extends 'admin_base.html' %}
+
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+    <main>
+        <div class="container py-3">
+            <center>
+                <header>
+                    <h2>{{form.Name}} | {{title}}</h2>
+                </header>
+            </center>
+            <main>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h4>Seriously, you wanna delete <i> {{form.id}} | {{form.Name}}</i> ?</h4>
+                    <button type="submit" class="btn btn-outline-danger">Sure</button>
+                    <a href="{% url 'list' %}" class="btn btn-primary">No way</a>
+                </form>
+            </main>
+        </div>
+    </main>
+
+
+{% endblock content %}
+    
+    

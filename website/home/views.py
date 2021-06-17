@@ -49,14 +49,41 @@ def ListView(request):
 
 
 def CreateAboutView(request):
-    about = AboutForm()
+    form = AboutForm()
     if request.method == 'POST':
-        about = AboutForm(request.POST)
-        if about.is_valid():
-            about.save()
-        return redirect('list-view')
+        form = AboutForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+        return redirect("list")
     konteks = {
         'title': 'Add New About',
-        'about': about,
+        'form': form,
     }
-    return render(request, 'create_about.html', konteks)
+    return render(request, 'create_form.html', konteks)
+
+
+def UpdateAboutView(request, pk):
+    data = About.objects.get(id=pk)
+    form = AboutForm(instance=data)
+    if request.method == 'POST':
+        form = AboutForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+        return redirect('list')
+    konteks = {
+        'title': 'About',
+        'form': form,
+    }
+    return render(request, 'update_form.html', konteks)
+
+
+def DeleteAboutView(request, pk):
+    form = About.objects.get(id=pk)
+    konteks = {
+        'title': 'Delete Data',
+        'form': form,
+    }
+    if request.method == "POST":
+        form.delete()
+        return redirect('list')
+    return render(request, 'delete_form.html', konteks)

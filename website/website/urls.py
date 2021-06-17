@@ -20,12 +20,15 @@ from django.conf.urls.static import static
 from home.views import *
 
 urlpatterns = [
+    path('delete-about/<str:pk>/', DeleteAboutView, name='deleteAbout'),
+    path('update-about/<str:pk>/', UpdateAboutView, name='updateAbout'),
     path('create-about/', CreateAboutView, name='createAbout'),
     path('list-view/', ListView, name='list'),
     path('', HomeView, name='home'),
     path('admin/', admin.site.urls),
     # path('ckeditor/', include('ckeditor_uploader.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,6 +8,16 @@ class AboutForm(forms.ModelForm):
         model = About
         exclude = []
         field = '__all__'
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control'}),
+            'Date_of_Birth': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }),
+            'Address': forms.TextInput(attrs={'class': 'form-control'}),
+            'Email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'Phone': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 
 
 class SkillForm(forms.ModelForm):
