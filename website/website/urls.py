@@ -23,6 +23,8 @@ urlpatterns = [
     path('delete-about/<str:pk>/', DeleteAboutView, name='deleteAbout'),
     path('update-about/<str:pk>/', UpdateAboutView, name='updateAbout'),
     path('create-about/', CreateAboutView, name='createAbout'),
+    path('login-user/', LoginView, name='login'),
+    path('create-user/', CreateUserView, name='createUser'),
     path('list-view/', ListView, name='list'),
     path('', HomeView, name='home'),
     path('admin/', admin.site.urls),
