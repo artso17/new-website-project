@@ -7,14 +7,17 @@
     
 
 {% block content %}
-<main>
-    <div class="container py-3">
+<center>
+    <header class="fixed-top bg-secondary">
+        <h2 class="text-light">Welcome Back {{request.user}} to {{title}}</h2>
+        <h5 class="bg-light"><a href="{% url 'home' %}">Home</a> | <a href="{% url 'logout' %}">Logout</a></h5>
+    </header>
+</center>
+<main class='py-5'>
+    <div class="container ">
         <center>
-            <header>
-                <h2>{{title}}</h2>
-            </header>
             <main>
-                <section class="about-section">
+                <section class="about-section py-5">
                     <h3>About List</h3>
                     <table class="table table-striped">
                             <thead>
@@ -43,6 +46,83 @@
                         <a href="{% url 'createAbout' %}" class="btn btn-primary" type="button">Add New</a>
                     </div>
                 </section>
+
+
+
+
+
+                <!-- skill -->
+                <section class="skill-section">
+                    <h3>Skill List</h3>
+                    <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">N0</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Skill Range</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            {% for skill in skills %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{skill.Name}}</td>
+                                    <td>{{skill.Skill_Range}}</td>
+                                    <td>{{skill.id}}</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="{% url 'deleteSkill' skill.id %}" role="button">Delete</a> | <a class="btn btn-warning" href="{% url 'updateSkill' skill.id %}" role="button">Update</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'createSkill' %}" class="btn btn-primary" type="button">Add New</a>
+                    </div>
+                </section>
+
+
+
+
+
+                <!--service  -->
+                <section class="gallery-section py-5">
+                    <h3>gallery List</h3>
+                    <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">N0</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            {% for gallery in galleries %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{gallery.Name}}</td>
+                                    <td>{{gallery.id}}</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="{% url 'deleteGallery' gallery.id %}" role="button">Delete</a> | <a class="btn btn-warning" href="{% url 'updateGallery' gallery.id %}" role="button">Update</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'createAbout' %}" class="btn btn-primary" type="button">Add New</a>
+                    </div>
+                </section>
+
+
+
+
+
             </main>
             
         </center>

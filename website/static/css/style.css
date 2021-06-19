@@ -162,9 +162,8 @@ a.detail-gallery:hover .gallery-box,
 }
 
 
-
 /* contact css */
-form {
+form .form-style {
     display: grid;
     grid-template-areas: 'pertama kedua'
         'satu satu'

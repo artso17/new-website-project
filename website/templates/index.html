@@ -282,7 +282,7 @@
 
 </ul>
 
-<form action="/" method="post">
+<form method="post" class='form-style'>
     {% csrf_token %}
     {{contact.as_p}}
     <input type="submit" value="Submit">

@@ -39,6 +39,11 @@ class SkillForm(forms.ModelForm):
         model = Skill
         exclude = []
         field = '__all__'
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control'}),
+            'Skill_Range': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Publish': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        }
 
 
 class ServiceForm(forms.ModelForm):

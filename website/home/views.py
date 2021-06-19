@@ -46,8 +46,15 @@ def LoginView(request):
 
 @login_required(login_url='login')
 def LogoutView(request):
-    logout(request)
-    return redirect('login')
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login')
+
+    konteks = {
+        'title': 'Logout',
+    }
+
+    return render(request, 'logout.html', konteks)
 
 
 def HomeView(request):
@@ -84,7 +91,7 @@ def ListView(request):
     contact = Contact.objects.all()
 
     konteks = {
-        'title': 'List Data Base',
+        'title': 'List of Data Base',
         'abouts': abouts,
         'skills': skills,
         'services': services,
@@ -113,6 +120,7 @@ def CreateAboutView(request):
 def UpdateAboutView(request, pk):
     data = About.objects.get(id=pk)
     form = AboutForm(instance=data)
+    print(form)
     if request.method == 'POST':
         form = AboutForm(request.POST or None, instance=data)
         if form.is_valid():
@@ -128,6 +136,98 @@ def UpdateAboutView(request, pk):
 @login_required(login_url='login')
 def DeleteAboutView(request, pk):
     form = About.objects.get(id=pk)
+    konteks = {
+        'title': 'Delete Data',
+        'form': form,
+    }
+    if request.method == "POST":
+        form.delete()
+        return redirect('list')
+    return render(request, 'delete_form.html', konteks)
+
+
+# skill
+@login_required(login_url='login')
+def CreateSkillView(request):
+    form = SkillForm()
+    if request.method == 'POST':
+        form = SkillForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+        return redirect("list")
+    konteks = {
+        'title': 'Add New Skill',
+        'form': form,
+    }
+    return render(request, 'create_form.html', konteks)
+
+
+@login_required(login_url='login')
+def UpdateSkillView(request, pk):
+    data = Skill.objects.get(id=pk)
+    form = SkillForm(instance=data)
+    print(form)
+    if request.method == 'POST':
+        form = SkillForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+        return redirect('list')
+    konteks = {
+        'title': 'Skill',
+        'form': form,
+    }
+    return render(request, 'update_form.html', konteks)
+
+
+@login_required(login_url='login')
+def DeleteSkillView(request, pk):
+    form = Skill.objects.get(id=pk)
+    konteks = {
+        'title': 'Delete Data',
+        'form': form,
+    }
+    if request.method == "POST":
+        form.delete()
+        return redirect('list')
+    return render(request, 'delete_form.html', konteks)
+
+
+# gallery
+@login_required(login_url='login')
+def CreateGalleryView(request):
+    form = GalleryForm()
+    if request.method == 'POST':
+        form = GalleryForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+        return redirect("list")
+    konteks = {
+        'title': 'Add New Gallery',
+        'form': form,
+    }
+    return render(request, 'create_form.html', konteks)
+
+
+@login_required(login_url='login')
+def UpdateGalleryView(request, pk):
+    data = Gallery.objects.get(id=pk)
+    form = GalleryForm(instance=data)
+    print(form)
+    if request.method == 'POST':
+        form = GalleryForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+        return redirect('list')
+    konteks = {
+        'title': 'Gallery',
+        'form': form,
+    }
+    return render(request, 'update_form.html', konteks)
+
+
+@login_required(login_url='login')
+def DeleteGalleryView(request, pk):
+    form = Gallery.objects.get(id=pk)
     konteks = {
         'title': 'Delete Data',
         'form': form,

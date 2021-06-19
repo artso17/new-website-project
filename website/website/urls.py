@@ -20,11 +20,18 @@ from django.conf.urls.static import static
 from home.views import *
 
 urlpatterns = [
+    path('delete-gallery/<str:pk>/', DeleteGalleryView, name='deleteGallery'),
+    path('update-gallery/<str:pk>/', UpdateGalleryView, name='updateGallery'),
+    path('create-gallery', CreateGalleryView, name='createGallery'),
+    path('delete-skill/<str:pk>/', DeleteSkillView, name='deleteSkill'),
+    path('update-skill/<str:pk>/', UpdateSkillView, name='updateSkill'),
+    path('create-skill/', CreateSkillView, name='createSkill'),
     path('delete-about/<str:pk>/', DeleteAboutView, name='deleteAbout'),
     path('update-about/<str:pk>/', UpdateAboutView, name='updateAbout'),
     path('create-about/', CreateAboutView, name='createAbout'),
+    path('logout-user/', LogoutView, name='logout'),
     path('login-user/', LoginView, name='login'),
-    path('create-user/', CreateUserView, name='createUser'),
+    # path('create-user/', CreateUserView, name='createUser'),
     path('list-view/', ListView, name='list'),
     path('', HomeView, name='home'),
     path('admin/', admin.site.urls),
