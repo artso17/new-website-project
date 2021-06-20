@@ -25,6 +25,12 @@ li {
     list-style: none;
 }
 
+.grid-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
 .navbar-brand img {
     width: 40px;
 }
@@ -163,13 +169,12 @@ a.detail-gallery:hover .gallery-box,
 
 
 /* contact css */
-form .form-style {
+.form-style {
     display: grid;
     grid-template-areas: 'pertama kedua'
         'satu satu'
         'dua dua'
         'tiga tiga';
-
     gap: 15px;
 }
 

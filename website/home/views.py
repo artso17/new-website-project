@@ -44,7 +44,7 @@ def LoginView(request):
     return render(request, 'login.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def LogoutView(request):
     if request.method == 'POST':
         logout(request)
@@ -82,7 +82,7 @@ def HomeView(request):
     return render(request, 'index.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def ListView(request):
     abouts = About.objects.all()
     skills = Skill.objects.all()
@@ -101,7 +101,7 @@ def ListView(request):
     return render(request, 'list_view.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def CreateAboutView(request):
     form = AboutForm()
     if request.method == 'POST':
@@ -116,11 +116,10 @@ def CreateAboutView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def UpdateAboutView(request, pk):
     data = About.objects.get(id=pk)
     form = AboutForm(instance=data)
-    print(form)
     if request.method == 'POST':
         form = AboutForm(request.POST or None, instance=data)
         if form.is_valid():
@@ -133,7 +132,7 @@ def UpdateAboutView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def DeleteAboutView(request, pk):
     form = About.objects.get(id=pk)
     konteks = {
@@ -147,7 +146,7 @@ def DeleteAboutView(request, pk):
 
 
 # skill
-@login_required(login_url='login')
+@login_required(login_url='home')
 def CreateSkillView(request):
     form = SkillForm()
     if request.method == 'POST':
@@ -162,11 +161,10 @@ def CreateSkillView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def UpdateSkillView(request, pk):
     data = Skill.objects.get(id=pk)
     form = SkillForm(instance=data)
-    print(form)
     if request.method == 'POST':
         form = SkillForm(request.POST or None, instance=data)
         if form.is_valid():
@@ -179,7 +177,7 @@ def UpdateSkillView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def DeleteSkillView(request, pk):
     form = Skill.objects.get(id=pk)
     konteks = {
@@ -192,8 +190,53 @@ def DeleteSkillView(request, pk):
     return render(request, 'delete_form.html', konteks)
 
 
+# service
+@login_required(login_url='home')
+def CreateServiceView(request):
+    form = ServiceForm()
+    if request.method == 'POST':
+        form = ServiceForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+        return redirect("list")
+    konteks = {
+        'title': 'Add New Service',
+        'form': form,
+    }
+    return render(request, 'create_form.html', konteks)
+
+
+@login_required(login_url='home')
+def UpdateServiceView(request, pk):
+    data = Service.objects.get(id=pk)
+    form = ServiceForm(instance=data)
+    if request.method == 'POST':
+        form = ServiceForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+        return redirect('list')
+    konteks = {
+        'title': 'Service',
+        'form': form,
+    }
+    return render(request, 'update_form.html', konteks)
+
+
+@login_required(login_url='home')
+def DeleteServiceView(request, pk):
+    form = Service.objects.get(id=pk)
+    konteks = {
+        'title': 'Delete Data',
+        'form': form,
+    }
+    if request.method == "POST":
+        form.delete()
+        return redirect('list')
+    return render(request, 'delete_form.html', konteks)
+
+
 # gallery
-@login_required(login_url='login')
+@login_required(login_url='home')
 def CreateGalleryView(request):
     form = GalleryForm()
     if request.method == 'POST':
@@ -208,11 +251,10 @@ def CreateGalleryView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def UpdateGalleryView(request, pk):
     data = Gallery.objects.get(id=pk)
     form = GalleryForm(instance=data)
-    print(form)
     if request.method == 'POST':
         form = GalleryForm(request.POST or None, instance=data)
         if form.is_valid():
@@ -225,9 +267,39 @@ def UpdateGalleryView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='login')
+@login_required(login_url='home')
 def DeleteGalleryView(request, pk):
     form = Gallery.objects.get(id=pk)
+    konteks = {
+        'title': 'Delete Data',
+        'form': form,
+    }
+    if request.method == "POST":
+        form.delete()
+        return redirect('list')
+    return render(request, 'delete_form.html', konteks)
+
+
+# contact
+@login_required(login_url='home')
+def UpdateContactView(request, pk):
+    data = Contact.objects.get(id=pk)
+    form = ContactForm(instance=data)
+    if request.method == 'POST':
+        form = ContactForm(request.POST or None, instance=data)
+        if form.is_valid():
+            form.save()
+        return redirect('list')
+    konteks = {
+        'title': 'Contact',
+        'form': form,
+    }
+    return render(request, 'update_form.html', konteks)
+
+
+@login_required(login_url='home')
+def DeleteContactView(request, pk):
+    form = Contact.objects.get(id=pk)
     konteks = {
         'title': 'Delete Data',
         'form': form,

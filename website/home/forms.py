@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 from .models import *
 from django_svg_image_form_field import SvgAndImageFormField
@@ -54,6 +55,13 @@ class ServiceForm(forms.ModelForm):
         field_classes = {
             'Image': SvgAndImageFormField,
         }
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control'}),
+            'Height': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Width': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Body': forms.Textarea(attrs={'class': 'form-control'}),
+            'Publish': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
 
 
 class GalleryForm(forms.ModelForm):
@@ -64,9 +72,24 @@ class GalleryForm(forms.ModelForm):
         field_classes = {
             'Image': SvgAndImageFormField,
         }
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control'}),
+            'Skill': forms.CheckboxSelectMultiple(),
+            'Height': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Width': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Publish': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        }
 
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
+        exclude = []
         fields = '__all__'
+        widgets = {
+            'Name': forms.TextInput(attrs={'class': 'form-control', 'readonly': True}),
+            'Email': forms.EmailInput(attrs={'class': 'form-control', 'readonly': True}),
+            'Subject': forms.TextInput(attrs={'class': 'form-control', 'readonly': True}),
+            'Message': forms.Textarea(attrs={'class': 'form-control', 'readonly': True}),
+            'Readed': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        }

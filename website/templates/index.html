@@ -195,7 +195,7 @@
                         </center>
                     </div>
                     <div class="contact-container">
-                        <form action="/" method="post">
+                        <form method="post" class="form-style">
                             {% csrf_token %}
                             <!-- {{contact.as_p}} -->
                             <input type="text" class="form-control rounded-pill" id="{{contact.Name.name|lower}}-form" name="{{contact.Name.name}}" aria-describedby="{{contact.Name.name}}Help" maxlength="{{contact.Name.max}}" placeholder="Your {{contact.Name.name}}" required>
@@ -255,35 +255,3 @@
 
 
 {% endblock content %}
-    
-
-<h1>home</h1>
-{{about.Date_of_Birth}}
-
-<ul>
-{% for skill in skills %}
-        <li>{{skill.Name}} {{skill.Skill_Range}}%</li>
-{% endfor %}
-</ul>   
-
-<ul>
-    
-    {% for service in services %}
-        <li>{{service.Name}}</li>
-    {% endfor %}
-        
-</ul>
-
-<ul>
-    
-    {% for gallery in galleries %}
-        <li>{{gallery.Name}}</li>
-    {% endfor %}
-
-</ul>
-
-<form method="post" class='form-style'>
-    {% csrf_token %}
-    {{contact.as_p}}
-    <input type="submit" value="Submit">
-</form>

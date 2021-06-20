@@ -20,6 +20,11 @@ from django.conf.urls.static import static
 from home.views import *
 
 urlpatterns = [
+    path('delete-contact/<str:pk>/', DeleteContactView, name='deleteContact'),
+    path('update-contact/<str:pk>/', UpdateContactView, name='updateContact'),
+    path('delete-service/<str:pk>/', DeleteServiceView, name='deleteService'),
+    path('update-service/<str:pk>/', UpdateServiceView, name='updateService'),
+    path('create-service/', CreateServiceView, name="createService"),
     path('delete-gallery/<str:pk>/', DeleteGalleryView, name='deleteGallery'),
     path('update-gallery/<str:pk>/', UpdateGalleryView, name='updateGallery'),
     path('create-gallery', CreateGalleryView, name='createGallery'),

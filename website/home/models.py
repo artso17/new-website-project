@@ -10,7 +10,7 @@ class About(models.Model):
     Address = models.CharField(max_length=200)
     Email = models.EmailField()
     Phone = models.CharField(max_length=20)
-    Image = models.ImageField(upload_to='image/about')
+    Image = models.ImageField(upload_to='image/about', null=True)
 
     def __str__(self):
         return '{}.{}'.format(self.id, self.Name)
@@ -72,7 +72,11 @@ class Contact(models.Model):
     Email = models.EmailField()
     Subject = models.CharField(max_length=100)
     Message = models.TextField()
-    Created = models.DateTimeField(auto_now_add=True, blank=True)
+    Readed = models.BooleanField(default=False)
+    Created = models.DateTimeField(
+        auto_now_add=True, blank=True, editable=False)
+    Updated = models.DateTimeField(
+        auto_now=True, blank=True, editable=False)
 
     def __str__(self):
         return str(self.Name)
