@@ -48,6 +48,10 @@ class Service(models.Model):
         super(Service, self).save()
 
 
+def Upload_Location(self, data):
+    return f'{data.id}'
+
+
 class Gallery(models.Model):
     Name = models.CharField(max_length=100)
     Skill = models.ManyToManyField(

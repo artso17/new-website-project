@@ -68,7 +68,7 @@ def HomeView(request):
         contact = ContactForm(request.POST)
         if contact.is_valid():
             contact.save()
-        return redirect('/')
+        return redirect('mailConfirm')
 
     konteks = {
         'title': 'Artso | Web Developer',
@@ -80,6 +80,10 @@ def HomeView(request):
 
     }
     return render(request, 'index.html', konteks)
+
+
+def MailConfirmView(request):
+    return render(request, 'mail_confirm.html')
 
 
 @login_required(login_url='home')

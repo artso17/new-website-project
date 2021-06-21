@@ -1,0 +1,27 @@
+{% extends 'admin_base.html' %}
+
+
+{% block title %}
+    Mail Confirmation
+{% endblock title %}
+
+
+{% block content %}
+    <main class=" d-grid align-items-center"style="height:100vh">
+        <section class="container ">
+            <div class="row align-items-center gap-5">
+                <article class="col bg-primary rounded-pill py-2">
+                    <center>
+                        <h1 class="text-uppercase ">congratulations!</h1>
+                        <h3 class="text-light">Your mail has been sent. We'll reply soon</h3>
+                        
+                    </center>
+                </article>
+                <center>
+                    <a href="{% url 'home' %}" class="btn btn-success text-capitalize rounded-pill">back to home</a>
+                </center>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+    

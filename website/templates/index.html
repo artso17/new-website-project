@@ -35,8 +35,11 @@
                 <div class="col container-about">
                     {% if about.Image %}
                         <picture>
-                            <div class="img-box" style="background-image: url({{about.Image.url}});">
-                                <p class="d-none">image box</p>
+                            <div class="img-box bg-primary d-grid" >
+                                <center>
+                                    <img src="{{about.Image.url}}" alt="Profil Image" style="height:300px;">
+
+                                </center>
                             </div>
                         </picture>
                     {% endif %}
@@ -218,22 +221,27 @@
         <section class="footer-section p-section bg-dark" id="footer">
             <div class="row ">
                 <div class="col d-grid gap-4">
-                    <div class="footer-container container-grid px-5">
-                        <div class="footer-box text-center  gap-2 ">
+                    <div class="footer-container row px-5">
+                        <div class="footer-box text-center  col-md ">
                             <h3 class=""> About</h3>
                             <hr>
                             <p>An area that is in the middle of various cultures and becomes a place where technology ships docked.</p>
                         </div>
-                        <div class="footer-box text-center gap-2 ">
+                        <div class="footer-box text-center col-md ">
                             <h3>Links</h3>
                             <hr>
-                            <p>Home</p>
-                            <p>About</p>
+                            <a class="nav-link text-capitalize py-0" href="#home"><p class='text-light'>home</p></a>
+                            <a class="nav-link text-capitalize py-0" href="#about"><p class='text-light'>about</p></a>
+                            <a class="nav-link text-capitalize py-0" href="#service"><p class='text-light'>service</p></a>
+                            <a class="nav-link text-capitalize py-0" href="#gallery"><p class='text-light'>gallery</p></a>
+                            <a class="nav-link text-capitalize py-0" href="#contact"><p class='text-light'>contact</p></a>
+                            <a class="nav-link text-capitalize py-0 disabled" href="#about"><p class='text-light'>blog</p></a>
+                            <!-- <p>About</p>
                             <p>Service</p>
                             <p>Gallery</p>
-                            <p>Contact</p>
+                            <p>Contact</p> -->
                         </div>
-                        <div class="footer-box text-center gap-2 ">
+                        <!-- <div class="footer-box text-center gap-2 ">
                             <h3>Links</h3>
                             <hr>
                             <p>Home</p>
@@ -242,7 +250,7 @@
                             <p>Gallery</p>
                             <p>Contact</p>
                             
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
