@@ -8,14 +8,17 @@ from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
+from .decorators import *
 # Create your views here.
 
 
+@unauthorized_user
 def CreateUserView(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
+            inactive_user = send_verification_email(request, form)
             form.save()
             user = form.cleaned_data('username')
             messages.success(
@@ -29,6 +32,7 @@ def CreateUserView(request):
     return render(request, 'create_user.html', konteks)
 
 
+@unauthorized_user
 def LoginView(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -87,6 +91,7 @@ def MailConfirmView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def ListView(request):
     abouts = About.objects.all()
     skills = Skill.objects.all()
@@ -106,6 +111,7 @@ def ListView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def CreateAboutView(request):
     form = AboutForm()
     if request.method == 'POST':
@@ -121,6 +127,7 @@ def CreateAboutView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def UpdateAboutView(request, pk):
     data = About.objects.get(id=pk)
     form = AboutForm(instance=data)
@@ -137,6 +144,7 @@ def UpdateAboutView(request, pk):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def DeleteAboutView(request, pk):
     form = About.objects.get(id=pk)
     konteks = {
@@ -151,6 +159,7 @@ def DeleteAboutView(request, pk):
 
 # skill
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def CreateSkillView(request):
     form = SkillForm()
     if request.method == 'POST':
@@ -166,6 +175,7 @@ def CreateSkillView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def UpdateSkillView(request, pk):
     data = Skill.objects.get(id=pk)
     form = SkillForm(instance=data)
@@ -182,6 +192,7 @@ def UpdateSkillView(request, pk):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def DeleteSkillView(request, pk):
     form = Skill.objects.get(id=pk)
     konteks = {
@@ -196,6 +207,7 @@ def DeleteSkillView(request, pk):
 
 # service
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def CreateServiceView(request):
     form = ServiceForm()
     if request.method == 'POST':
@@ -211,6 +223,7 @@ def CreateServiceView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def UpdateServiceView(request, pk):
     data = Service.objects.get(id=pk)
     form = ServiceForm(instance=data)
@@ -227,6 +240,7 @@ def UpdateServiceView(request, pk):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def DeleteServiceView(request, pk):
     form = Service.objects.get(id=pk)
     konteks = {
@@ -241,6 +255,7 @@ def DeleteServiceView(request, pk):
 
 # gallery
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def CreateGalleryView(request):
     form = GalleryForm()
     if request.method == 'POST':
@@ -256,6 +271,7 @@ def CreateGalleryView(request):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def UpdateGalleryView(request, pk):
     data = Gallery.objects.get(id=pk)
     form = GalleryForm(instance=data)
@@ -272,6 +288,7 @@ def UpdateGalleryView(request, pk):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def DeleteGalleryView(request, pk):
     form = Gallery.objects.get(id=pk)
     konteks = {
@@ -286,6 +303,7 @@ def DeleteGalleryView(request, pk):
 
 # contact
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def UpdateContactView(request, pk):
     data = Contact.objects.get(id=pk)
     form = ContactForm(instance=data)
@@ -302,6 +320,7 @@ def UpdateContactView(request, pk):
 
 
 @login_required(login_url='home')
+@allowed_user(allowed_user=['admin'])
 def DeleteContactView(request, pk):
     form = Contact.objects.get(id=pk)
     konteks = {
