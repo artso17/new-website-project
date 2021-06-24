@@ -77,6 +77,7 @@ class Contact(models.Model):
     Subject = models.CharField(max_length=100)
     Message = models.TextField()
     Readed = models.BooleanField(default=False)
+    Verified = models.BooleanField(default=False)
     Created = models.DateTimeField(
         auto_now_add=True, blank=True, editable=False)
     Updated = models.DateTimeField(

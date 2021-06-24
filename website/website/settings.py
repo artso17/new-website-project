@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    'verify_email.apps.VerifyEmailConfig',
+    # 'verify_email.apps.VerifyEmailConfig',
     # 'ckeditor',
     # 'ckeditor_uploader'
 ]
@@ -144,7 +144,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # email setting
-EMAIL_FIELD_NAME = 'Email'
+EMAIL_FROM_USER = config('EMAIL_FROM_USER')
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)

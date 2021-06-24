@@ -1,0 +1,11 @@
+
+{% autoescape off %}
+    
+    Hi {{user.Name}}
+
+    Last step, Click link below so your mail will be sent.
+
+    http://{{domain}}{% url 'verificationMail' uidb64=contactid token=token %}
+
+
+{% endautoescape %}

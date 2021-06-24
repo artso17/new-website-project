@@ -1,14 +1,20 @@
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.forms import UserCreationForm
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
 from .models import *
 from .forms import *
 from .decorators import *
+from .utils import *
+from django.conf import settings
 # Create your views here.
 
 
@@ -18,7 +24,6 @@ def CreateUserView(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            inactive_user = send_verification_email(request, form)
             form.save()
             user = form.cleaned_data('username')
             messages.success(
@@ -72,7 +77,33 @@ def HomeView(request):
         contact = ContactForm(request.POST)
         if contact.is_valid():
             contact.save()
-        return redirect('mailConfirm')
+            # print(request.POST)
+            email_konteks = {
+                'name': request.POST['Name'],
+                'email': request.POST['Email'],
+                'subject': request.POST['Subject'],
+                'body': request.POST['Message'],
+            }
+            # print(email_konteks)
+            email_customer_body = render_to_string(
+                'customer_email.html', email_konteks)
+            email1 = EmailMessage(subject=request.POST['Subject'],
+                                  body=email_customer_body,
+                                  from_email=settings.EMAIL_HOST_USER,
+                                  to=[request.POST['Email']],
+                                  )
+
+            email_admin_body = render_to_string(
+                'admin_email.html', email_konteks)
+            email_admin = EmailMessage(subject='Customer Request',
+                                       body=email_admin_body,
+                                       from_email=settings.EMAIL_HOST_USER,
+                                       to=[settings.EMAIL_HOST_USER],
+                                       )
+
+            email1.send()
+            email_admin.send()
+            return redirect('mailConfirm')
 
     konteks = {
         'title': 'Artso | Web Developer',
@@ -90,8 +121,8 @@ def MailConfirmView(request):
     return render(request, 'mail_confirm.html')
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def ListView(request):
     abouts = About.objects.all()
     skills = Skill.objects.all()
@@ -110,8 +141,8 @@ def ListView(request):
     return render(request, 'list_view.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def CreateAboutView(request):
     form = AboutForm()
     if request.method == 'POST':
@@ -126,8 +157,8 @@ def CreateAboutView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def UpdateAboutView(request, pk):
     data = About.objects.get(id=pk)
     form = AboutForm(instance=data)
@@ -143,8 +174,8 @@ def UpdateAboutView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def DeleteAboutView(request, pk):
     form = About.objects.get(id=pk)
     konteks = {
@@ -158,8 +189,8 @@ def DeleteAboutView(request, pk):
 
 
 # skill
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def CreateSkillView(request):
     form = SkillForm()
     if request.method == 'POST':
@@ -174,8 +205,8 @@ def CreateSkillView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def UpdateSkillView(request, pk):
     data = Skill.objects.get(id=pk)
     form = SkillForm(instance=data)
@@ -191,8 +222,8 @@ def UpdateSkillView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def DeleteSkillView(request, pk):
     form = Skill.objects.get(id=pk)
     konteks = {
@@ -206,8 +237,8 @@ def DeleteSkillView(request, pk):
 
 
 # service
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def CreateServiceView(request):
     form = ServiceForm()
     if request.method == 'POST':
@@ -222,8 +253,8 @@ def CreateServiceView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def UpdateServiceView(request, pk):
     data = Service.objects.get(id=pk)
     form = ServiceForm(instance=data)
@@ -239,8 +270,8 @@ def UpdateServiceView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def DeleteServiceView(request, pk):
     form = Service.objects.get(id=pk)
     konteks = {
@@ -254,8 +285,8 @@ def DeleteServiceView(request, pk):
 
 
 # gallery
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def CreateGalleryView(request):
     form = GalleryForm()
     if request.method == 'POST':
@@ -270,8 +301,8 @@ def CreateGalleryView(request):
     return render(request, 'create_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def UpdateGalleryView(request, pk):
     data = Gallery.objects.get(id=pk)
     form = GalleryForm(instance=data)
@@ -287,8 +318,8 @@ def UpdateGalleryView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def DeleteGalleryView(request, pk):
     form = Gallery.objects.get(id=pk)
     konteks = {
@@ -302,8 +333,8 @@ def DeleteGalleryView(request, pk):
 
 
 # contact
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def UpdateContactView(request, pk):
     data = Contact.objects.get(id=pk)
     form = ContactForm(instance=data)
@@ -319,8 +350,8 @@ def UpdateContactView(request, pk):
     return render(request, 'update_form.html', konteks)
 
 
-@login_required(login_url='home')
-@allowed_user(allowed_user=['admin'])
+@ login_required(login_url='home')
+@ allowed_user(allowed_user=['admin'])
 def DeleteContactView(request, pk):
     form = Contact.objects.get(id=pk)
     konteks = {
