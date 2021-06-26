@@ -103,7 +103,7 @@ else:
             cast=db_url
         )
     }
-print(DATABASES)
+# print(DATABASES)
 
 
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
