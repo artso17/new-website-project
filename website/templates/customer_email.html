@@ -1,11 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .email-header{
+            background-color: #B4F5F0;
+        }
+        
 
-{% autoescape on %}
-    Hi {{name}}
-    __________________________________
-    Your e-mail was sent successfully.
 
-    We'll reply as soon as possible
-    __________________________________
-    
-    Regards, Artso
-{% endautoescape %}
+    </style>
+</head>
+<body>
+    <header class="email-header">
+        <center>
+            <h3>Hi {{name}},</h3>
+            <!-- <h4>you've got an mail from customer. Here it is read correctly</h4> -->
+        </center>
+    </header>
+    <hr>
+    <article>
+        <p>I've received your message and I'll reply as soon as possible.</p>
+        <hr>
+        <p>Regards,</p>
+        <p>Artsodev</p>
+    </article>
+</body>
+</html>

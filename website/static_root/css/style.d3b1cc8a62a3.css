@@ -1,0 +1,239 @@
+/* .home-section {
+    margin-top: 50px;
+} */
+:root {
+    --blue-color: rgba(4, 118, 208, 1);
+    --light-blue: #B4F5F0;
+    --light-dark: #555;
+}
+
+
+h2,
+p {
+    color: var(--light-dark);
+}
+
+h3 {
+    color: var(--blue-color);
+}
+
+p {
+    font-weight: 500;
+}
+
+li {
+    list-style: none;
+}
+
+.grid-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.navbar-brand img {
+    width: 40px;
+}
+
+.active {
+    border-bottom: 3px solid var(--blue-color);
+}
+
+
+.nav-link h3 {
+    font-weight: 400;
+}
+
+
+.home-section h2 {
+    color: #fff;
+}
+
+.p-section {
+    padding: 80px 0px 40px 0;
+}
+
+.container-about {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 5%;
+}
+
+.img-box {
+    width: 350px;
+    /* height: 100%; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+}
+
+#about-group-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    column-gap: 5px;
+}
+
+.group-list {
+    display: grid;
+    grid-template-columns: 100px max-content;
+    padding: 0;
+    column-gap: 5px;
+}
+
+.group-list-item {
+    list-style: none;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+/* skill css */
+.skill-val {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.progress {
+    background-color: var(--light-blue);
+}
+
+.progress-bar {
+    background-color: var(--blue-color);
+}
+
+
+
+
+/* service css */
+.service-box {
+    display: grid;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px 0 rgba(131, 131, 131, .6);
+    padding: 30px;
+    min-height: 550px;
+}
+
+.service-box img {
+    height: 135px;
+}
+
+.gallery-box {
+    height: 350px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px 0 rgba(131, 131, 131, .6);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.gallery-hover {
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(4, 118, 208, .8);
+    opacity: 0;
+    transform: scale(0);
+
+}
+
+a.detail-gallery:hover .gallery-hover {
+    opacity: 1;
+    transition: all .3s ease .2s;
+}
+
+a.detail-gallery:hover .gallery-box,
+.gallery-hover {
+
+    transform: scale(1.1);
+    transition: transform .3s ease;
+}
+
+.description {
+    color: var(--light-blue);
+}
+
+
+/* contact css */
+.form-style {
+    display: grid;
+    grid-template-areas: 'pertama kedua'
+        'satu satu'
+        'dua dua'
+        'tiga tiga';
+    gap: 15px;
+}
+
+#name-form {
+    grid-area: pertama;
+}
+
+#email-form {
+    grid-area: kedua;
+}
+
+#subject-form {
+    grid-area: satu;
+}
+
+#message-form {
+    grid-area: dua;
+    height: 40vh;
+    border-radius: 20px;
+}
+
+#submit-form {
+    grid-area: tiga;
+}
+
+.form-control {
+    background-color: var(--light-blue);
+}
+
+
+
+
+
+/* footer css */
+.footer-box>* {
+    color: #fff;
+}
+
+
+@media (max-width: 768px) {
+    .container-about {
+        grid-template-columns: 1fr;
+    }
+
+    .img-box {
+        width: 100%;
+        height: 300px;
+    }
+
+    .container-grid {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        grid-template-areas:
+            'pertama pertama'
+            'kedua kedua'
+            'satu satu'
+            'dua dua'
+            'tiga tiga';
+    }
+}

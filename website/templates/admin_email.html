@@ -1,12 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .email-header{
+            background-color: #B4F5F0;
+        }
+        
 
-{% autoescape off %}
-    Hi Artso,
 
-    you've got an mail from customer. Here it is read correctly
-    __________________________________
-
-    Sender :{{name}}
-    Subject :{{subject}} | Email :{{email}}
-    __________________________________
-    {{body}}
-{% endautoescape %}
+    </style>
+</head>
+<body>
+    <header class="email-header">
+        <center>
+            <h3>Hi Artso,</h3>
+            <h4>you've got an mail from customer. Here it is read correctly</h4>
+        </center>
+    </header>
+    <hr>
+    <article>
+        <header style='display:grid; grid-template-columns:.5fr .5fr'>
+            <p><strong>Sender</strong>: {{name}}</p>
+            <p><strong>Subject</strong>: {{subject}}</p>
+            <p><strong>Email</strong>: {{email}}</p>
+        </header>
+        <hr>
+        <body>
+            {{body}}
+        </body>
+    </article>
+</body>
+</html>

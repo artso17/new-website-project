@@ -13,7 +13,6 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from .models import *
 from .forms import *
 from .decorators import *
-from .utils import *
 from django.conf import settings
 # Create your views here.
 
@@ -66,6 +65,7 @@ def LogoutView(request):
     return render(request, 'logout.html', konteks)
 
 
+
 def HomeView(request):
     about = About.objects.first()
     skills = Skill.objects.all()
@@ -87,7 +87,7 @@ def HomeView(request):
             # print(email_konteks)
             email_customer_body = render_to_string(
                 'customer_email.html', email_konteks)
-            email1 = EmailMessage(subject=request.POST['Subject'],
+            email1 = EmailMessage(subject='Congratulations! Your Message was successfully sent',
                                   body=email_customer_body,
                                   from_email=settings.EMAIL_HOST_USER,
                                   to=[request.POST['Email']],
@@ -100,7 +100,8 @@ def HomeView(request):
                                        from_email=settings.EMAIL_HOST_USER,
                                        to=[settings.EMAIL_HOST_USER],
                                        )
-
+            email1.content_subtype = 'html'
+            email_admin.content_subtype = 'html'
             email1.send()
             email_admin.send()
             return redirect('mailConfirm')

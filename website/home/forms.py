@@ -31,7 +31,7 @@ class AboutForm(forms.ModelForm):
             }),
             'Address': forms.TextInput(attrs={'class': 'form-control'}),
             'Email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'Phone': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Phone': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
