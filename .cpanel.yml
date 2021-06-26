@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/artsodev/portfolio.artsodev.com/
+    - /bin/cp -R website $DEPLOYPATH
