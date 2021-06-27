@@ -27,7 +27,7 @@ def CreateUserView(request):
             user = form.cleaned_data('username')
             messages.success(
                 request, f'The Account for {user} was created successfully')
-        return redirect('login')
+            return redirect('login')
 
     konteks = {
         'title': 'registration',
@@ -63,7 +63,6 @@ def LogoutView(request):
     }
 
     return render(request, 'logout.html', konteks)
-
 
 
 def HomeView(request):
@@ -150,7 +149,7 @@ def CreateAboutView(request):
         form = AboutForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-        return redirect("list")
+            return redirect("list")
     konteks = {
         'title': 'Add New About',
         'form': form,
@@ -167,7 +166,7 @@ def UpdateAboutView(request, pk):
         form = AboutForm(request.POST or None, instance=data)
         if form.is_valid():
             form.save()
-        return redirect('list')
+            return redirect('list')
     konteks = {
         'title': 'About',
         'form': form,
@@ -198,7 +197,7 @@ def CreateSkillView(request):
         form = SkillForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-        return redirect("list")
+            return redirect("list")
     konteks = {
         'title': 'Add New Skill',
         'form': form,
@@ -215,7 +214,7 @@ def UpdateSkillView(request, pk):
         form = SkillForm(request.POST or None, instance=data)
         if form.is_valid():
             form.save()
-        return redirect('list')
+            return redirect('list')
     konteks = {
         'title': 'Skill',
         'form': form,
@@ -246,7 +245,7 @@ def CreateServiceView(request):
         form = ServiceForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-        return redirect("list")
+            return redirect("list")
     konteks = {
         'title': 'Add New Service',
         'form': form,
@@ -263,7 +262,7 @@ def UpdateServiceView(request, pk):
         form = ServiceForm(request.POST or None, instance=data)
         if form.is_valid():
             form.save()
-        return redirect('list')
+            return redirect('list')
     konteks = {
         'title': 'Service',
         'form': form,
@@ -294,7 +293,7 @@ def CreateGalleryView(request):
         form = GalleryForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-        return redirect("list")
+            return redirect("list")
     konteks = {
         'title': 'Add New Gallery',
         'form': form,
@@ -311,7 +310,7 @@ def UpdateGalleryView(request, pk):
         form = GalleryForm(request.POST or None, instance=data)
         if form.is_valid():
             form.save()
-        return redirect('list')
+            return redirect('list')
     konteks = {
         'title': 'Gallery',
         'form': form,
@@ -343,7 +342,7 @@ def UpdateContactView(request, pk):
         form = ContactForm(request.POST or None, instance=data)
         if form.is_valid():
             form.save()
-        return redirect('list')
+            return redirect('list')
     konteks = {
         'title': 'Contact',
         'form': form,
