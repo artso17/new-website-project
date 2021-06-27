@@ -182,3 +182,6 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = config(
 SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool)
 SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', cast=int)
 print(DEBUG)
+
+# secure policy
+SECURE_REFERRER_POLICY = config('SECURE_REFERRER_POLICY', default='origin')
