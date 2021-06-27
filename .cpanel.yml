@@ -1,5 +1,9 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/artsodev/testing/
-    - /bin/cp -R website $DEPLOYPATH
+    - /bin/cp -R website/home $DEPLOYPATH
+    - /bin/cp -R website/media $DEPLOYPATH
+    - /bin/cp -R website/static_root $DEPLOYPATH
+    - /bin/cp -R website/templates $DEPLOYPATH
+    - /bin/cp -R website/website $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
