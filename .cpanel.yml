@@ -1,6 +1,6 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/artsodev/testing/
+    - export DEPLOYPATH=/home/artsodev/website-portfolio/
     - /bin/cp -R website/home $DEPLOYPATH
     - /bin/cp -R website/media $DEPLOYPATH
     - /bin/cp -R website/static_root $DEPLOYPATH
